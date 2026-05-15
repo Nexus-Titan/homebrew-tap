@@ -29,7 +29,7 @@ class TiwutLauncher < Formula
         bin.install "NexusLauncher"
       end
     elsif OS.linux?
-      bin.install "NexusLauncher-linux-x86_64" => "NexusLauncher"
+      bin.install "NexusLauncher-linux-x86_64.AppImage" => "NexusLauncher"
     end
   end
 end
