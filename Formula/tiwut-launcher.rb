@@ -26,9 +26,7 @@ class TiwutLauncher < Formula
       prefixes += [
         Formula["libxkbcommon"].opt_prefix,
         Formula["libx11"].opt_prefix,
-        Formula["mesa"].opt_prefix,
-        Formula["fontconfig"].opt_prefix,
-        Formula["freetype"].opt_prefix
+        Formula["mesa"].opt_prefix
       ]
     end
 
@@ -37,17 +35,10 @@ class TiwutLauncher < Formula
       -DQT_DIR=#{qt_path}/lib/cmake/Qt6
     ]
 
-    if OS.linux?
-      ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
-      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
-      
-      args << "-DQt6Core_FOUND=TRUE"
-      args << "-DQt6_DIR=#{qt_path}/lib/cmake/Qt6"
-    end
-
     mkdir "build" do
       system "cmake", "..", *args
-      system "make", "install"
+      system "make"
+      bin.install "NexusLauncher"
     end
   end
 end
