@@ -10,6 +10,7 @@ class TiwutLauncher < Formula
     
     depends_on "cmake" => :build
     depends_on "qt"
+    depends_on "nexus-titan" 
   elsif OS.linux?
     url "https://github.com/tiwut/Tiwut-Launcher/releases/download/V4.2.4/NexusLauncher-linux-x86_64.AppImage"
     sha256 "6555eb38d420a69bea4727f21a1bff7e376049cf9d224be6a83df8827c45673f"
@@ -31,5 +32,9 @@ class TiwutLauncher < Formula
     elsif OS.linux?
       bin.install "NexusLauncher-linux-x86_64.AppImage" => "NexusLauncher"
     end
+  end
+
+  test do
+    assert_predicate bin/"NexusLauncher", :exist?
   end
 end
