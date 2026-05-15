@@ -26,13 +26,16 @@ class TiwutLauncher < Formula
       prefixes += [
         Formula["libxkbcommon"].opt_prefix,
         Formula["libx11"].opt_prefix,
-        Formula["mesa"].opt_prefix
+        Formula["mesa"].opt_prefix,
+        Formula["fontconfig"].opt_prefix,
+        Formula["freetype"].opt_prefix
       ]
     end
 
     args = std_cmake_args + %W[
       -DCMAKE_PREFIX_PATH=#{prefixes.join(";")}
-      -DQT_DIR=#{qt_path}/lib/cmake/Qt6
+      -DQt6_DIR=#{qt_path}/lib/cmake/Qt6
+      -DQt6Core_DIR=#{qt_path}/lib/cmake/Qt6Core
     ]
 
     mkdir "build" do
