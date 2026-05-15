@@ -17,15 +17,26 @@ class TiwutLauncher < Formula
     depends_on "fontconfig"
     depends_on "freetype"
   end
-  
+
   def install
+    qt_path = Formula["qt"].opt_prefix
+    
     args = std_cmake_args + %W[
-      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_prefix};#{Formula["libxkbcommon"].opt_prefix}
-      -DQT_DIR=#{Formula["qt"].opt_prefix}/lib/cmake/Qt6
+      -DCMAKE_PREFIX_PATH=#{qt_path}
+      -DQT_DIR=#{qt_path}/lib/cmake/Qt6
     ]
+
+    if OS.linux?
+      args << "-DCMAKE_PREFIX_PATH=#{qt_path};#{Formula["libxkbcommon"].opt_prefix}"
+    end
 
     system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
+    
     bin.install "build/NexusLauncher"
+  end
+
+  test do
+    assert_predicate bin/"NexusLauncher", :exist?
   end
 end
