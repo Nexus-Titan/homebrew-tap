@@ -12,7 +12,7 @@ class TiwutLauncher < Formula
     depends_on "qt"
   elsif OS.linux?
     url "https://github.com/tiwut/Tiwut-Launcher/releases/download/V4.2.4/Tiwut-Launcher-x86_64.AppImage"
-    sha256 "2b56b1bff0f32d573d42054268e1b74710b46eef877321d236f264bdfe115ee6"
+    sha256 "6555eb38d420a69bea4727f21a1bff7e376049cf9d224be6a83df8827c45673f"
   end
 
   def install
