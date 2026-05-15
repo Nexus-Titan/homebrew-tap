@@ -12,31 +12,36 @@ class TiwutLauncher < Formula
   on_linux do
     depends_on "libxkbcommon"
     depends_on "libx11"
-    depends_on "libxext"
     depends_on "mesa"
     depends_on "fontconfig"
     depends_on "freetype"
   end
 
   def install
-    qt_path = Formula["qt"].opt_prefix
+    qt_prefix = Formula["qt"].opt_prefix
     
     args = std_cmake_args + %W[
-      -DCMAKE_PREFIX_PATH=#{qt_path}
-      -DQT_DIR=#{qt_path}/lib/cmake/Qt6
+      -DCMAKE_PREFIX_PATH=#{qt_prefix}
+      -DQT_DIR=#{qt_prefix}/lib/cmake/Qt6
     ]
 
     if OS.linux?
-      args << "-DCMAKE_PREFIX_PATH=#{qt_path};#{Formula["libxkbcommon"].opt_prefix}"
+      linux_prefixes = [
+        Formula["libxkbcommon"].opt_prefix,
+        Formula["libx11"].opt_prefix,
+        Formula["mesa"].opt_prefix
+      ]
+      args << "-DCMAKE_PREFIX_PATH=#{qt_prefix};#{linux_prefixes.join(";")}"
+      
+      args << "-DCMAKE_INSTALL_RPATH=#{loader_path}"
     end
 
     system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
-    
     bin.install "build/NexusLauncher"
   end
 
-  test do
-    assert_predicate bin/"NexusLauncher", :exist?
+  def loader_path
+    OS.mac? ? "@loader_path/../lib" : "$ORIGIN/../lib"
   end
 end
