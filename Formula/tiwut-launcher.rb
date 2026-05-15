@@ -1,8 +1,8 @@
 class TiwutLauncher < Formula
   desc "Official desktop client for Tiwut project applications"
   homepage "https://tiwut.org"
-  url "https://github.com/tiwut/Tiwut-Launcher/archive/refs/tags/tiwut.tar.gz"
-  version "4.1.2"
+  url "https://github.com/tiwut/Tiwut-Launcher/archive/refs/tags/V4.2.3.tar.gz"
+  version "4.2.3"
   sha256 "52da2c395eb56a3d3c4e3dd09ad900bd03f3ce94853af5e75eb1272a3e64f65f"
   license "MIT"
 
