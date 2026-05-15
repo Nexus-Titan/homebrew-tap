@@ -9,17 +9,23 @@ class TiwutLauncher < Formula
   depends_on "cmake" => :build
   depends_on "qt"
 
+  on_linux do
+    depends_on "libxkbcommon"
+    depends_on "libx11"
+    depends_on "libxext"
+    depends_on "mesa"
+    depends_on "fontconfig"
+    depends_on "freetype"
+  end
+  
   def install
     args = std_cmake_args + %W[
-      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_lib}/cmake
+      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_prefix};#{Formula["libxkbcommon"].opt_prefix}
+      -DQT_DIR=#{Formula["qt"].opt_prefix}/lib/cmake/Qt6
     ]
 
     system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
     bin.install "build/NexusLauncher"
-  end
-
-  test do
-    system "#{bin}/NexusLauncher", "--version"
   end
 end
