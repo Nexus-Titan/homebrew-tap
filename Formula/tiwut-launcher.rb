@@ -23,17 +23,13 @@ class TiwutLauncher < Formula
     
     prefixes = [qt_path]
     if OS.linux?
-      prefixes << Formula["libxkbcommon"].opt_prefix
-      prefixes << Formula["libx11"].opt_prefix
-      prefixes << Formula["mesa"].opt_prefix
-      prefixes << Formula["fontconfig"].opt_prefix
-      prefixes << Formula["freetype"].opt_prefix
-    end
-
-    if OS.linux?
-      ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
-      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
-      ENV["PKG_CONFIG_PATH"] = "#{Formula["libxkbcommon"].opt_lib}/pkgconfig"
+      prefixes += [
+        Formula["libxkbcommon"].opt_prefix,
+        Formula["libx11"].opt_prefix,
+        Formula["mesa"].opt_prefix,
+        Formula["fontconfig"].opt_prefix,
+        Formula["freetype"].opt_prefix
+      ]
     end
 
     args = std_cmake_args + %W[
@@ -41,9 +37,17 @@ class TiwutLauncher < Formula
       -DQT_DIR=#{qt_path}/lib/cmake/Qt6
     ]
 
-    system "cmake", "-S", ".", "-B", "build", *args
-    system "cmake", "--build", "build"
-    
-    bin.install "build/NexusLauncher"
+    if OS.linux?
+      ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
+      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
+      
+      args << "-DQt6Core_FOUND=TRUE"
+      args << "-DQt6_DIR=#{qt_path}/lib/cmake/Qt6"
+    end
+
+    mkdir "build" do
+      system "cmake", "..", *args
+      system "make", "install"
+    end
   end
 end
