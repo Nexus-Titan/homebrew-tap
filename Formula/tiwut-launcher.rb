@@ -11,8 +11,8 @@ class TiwutLauncher < Formula
     depends_on "cmake" => :build
     depends_on "qt"
   elsif OS.linux?
-    url "https://github.com/tiwut/Tiwut-Launcher/releases/download/V4.2.4/NexusLauncher-linux-x86_64"
-    sha256 ""
+    url "https://github.com/tiwut/Tiwut-Launcher/releases/download/V4.2.4/Tiwut-Launcher-x86_64.AppImage"
+    sha256 "2b56b1bff0f32d573d42054268e1b74710b46eef877321d236f264bdfe115ee6"
   end
 
   def install
