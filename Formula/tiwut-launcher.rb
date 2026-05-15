@@ -3,7 +3,7 @@ class TiwutLauncher < Formula
   homepage "https://tiwut.org"
   url "https://github.com/tiwut/Tiwut-Launcher/archive/refs/tags/tiwut.tar.gz"
   version "4.1.2"
-  sha256 "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed"
+  sha256 "52da2c395eb56a3d3c4e3dd09ad900bd03f3ce94853af5e75eb1272a3e64f65f"
   license "MIT"
 
   depends_on "cmake" => :build
