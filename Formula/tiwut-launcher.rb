@@ -21,25 +21,19 @@ class TiwutLauncher < Formula
   def install
     qt_path = Formula["qt"].opt_prefix
     
-    prefixes = [qt_path]
     if OS.linux?
-      prefixes += [
-        Formula["libxkbcommon"].opt_prefix,
-        Formula["libx11"].opt_prefix,
-        Formula["mesa"].opt_prefix,
-        Formula["fontconfig"].opt_prefix,
-        Formula["freetype"].opt_prefix
-      ]
-      
       ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
-      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
-      ENV["QT_XKB_COMMON_X11_NO_XKB"] = "1" 
+      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include} -I#{Formula["mesa"].opt_include}"
+      
+      ENV.append_path "PKG_CONFIG_PATH", "#{Formula["libxkbcommon"].opt_lib}/pkgconfig"
+      ENV.append_path "PKG_CONFIG_PATH", "#{Formula["mesa"].opt_lib}/pkgconfig"
+      ENV.append_path "PKG_CONFIG_PATH", "#{Formula["qt"].opt_lib}/pkgconfig"
     end
 
     args = std_cmake_args + %W[
-      -DCMAKE_PREFIX_PATH=#{prefixes.join(";")}
       -DQt6Core_DIR=#{qt_path}/lib/cmake/Qt6Core
       -DQt6_DIR=#{qt_path}/lib/cmake/Qt6
+      -DCMAKE_PREFIX_PATH=#{qt_path}
     ]
 
     mkdir "build" do
