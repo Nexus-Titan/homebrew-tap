@@ -10,7 +10,11 @@ class TiwutLauncher < Formula
   depends_on "qt"
 
   def install
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    args = std_cmake_args + %W[
+      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_lib}/cmake
+    ]
+
+    system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
     bin.install "build/NexusLauncher"
   end
