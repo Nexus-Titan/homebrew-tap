@@ -30,19 +30,20 @@ class TiwutLauncher < Formula
       prefixes << Formula["freetype"].opt_prefix
     end
 
+    if OS.linux?
+      ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
+      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
+      ENV["PKG_CONFIG_PATH"] = "#{Formula["libxkbcommon"].opt_lib}/pkgconfig"
+    end
+
     args = std_cmake_args + %W[
       -DCMAKE_PREFIX_PATH=#{prefixes.join(";")}
       -DQT_DIR=#{qt_path}/lib/cmake/Qt6
     ]
 
-    if OS.linux?
-      ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
-      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
-      args << "-DCMAKE_SHARED_LINKER_FLAGS=-L#{Formula["libxkbcommon"].opt_lib}"
-    end
-
     system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
+    
     bin.install "build/NexusLauncher"
   end
 end
