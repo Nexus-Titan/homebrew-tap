@@ -30,12 +30,16 @@ class TiwutLauncher < Formula
         Formula["fontconfig"].opt_prefix,
         Formula["freetype"].opt_prefix
       ]
+      
+      ENV.append "LDFLAGS", "-L#{Formula["libxkbcommon"].opt_lib} -L#{Formula["mesa"].opt_lib}"
+      ENV.append "CPPFLAGS", "-I#{Formula["libxkbcommon"].opt_include}"
+      ENV["QT_XKB_COMMON_X11_NO_XKB"] = "1" 
     end
 
     args = std_cmake_args + %W[
       -DCMAKE_PREFIX_PATH=#{prefixes.join(";")}
-      -DQt6_DIR=#{qt_path}/lib/cmake/Qt6
       -DQt6Core_DIR=#{qt_path}/lib/cmake/Qt6Core
+      -DQt6_DIR=#{qt_path}/lib/cmake/Qt6
     ]
 
     mkdir "build" do
