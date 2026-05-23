@@ -9,7 +9,6 @@ class TiwutNetworkScanner < Formula
   env :std
 
   depends_on "cmake" => :build
-  depends_on "pkg-config" => :build
   depends_on "qt"
 
   on_linux do
@@ -17,7 +16,11 @@ class TiwutNetworkScanner < Formula
   end
 
   def install
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    args = std_cmake_args + %W[
+      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_prefix}
+    ]
+
+    system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
     
     bin.install "build/Network-Scanner"
