@@ -7,20 +7,28 @@ class TiwutNetworkScanner < Formula
   version "2.4.6"
 
   depends_on "cmake" => :build
+  depends_on "pkg-config" => :build
   depends_on "qt"
 
+  on_linux do
+    depends_on "gcc"
+  end
+
   def install
-    ENV["CMAKE_PREFIX_PATH"] = Formula["qt"].opt_lib/"cmake"
+    args = std_cmake_args + %W[
+      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_prefix}
+    ]
     
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
     
     if File.exist?("build/Network-Scanner")
-      bin.install "build/Network-Scanner" => "Network-Scanner"
-    elsif File.exist?("build/Network-Scanner")
       bin.install "build/Network-Scanner"
+    elsif File.exist?("build/OmniScan")
+      bin.install "build/OmniScan" => "Network-Scanner"
     else
-      bin.install Dir["build/*"].find { |f| File.executable?(f) && !File.directory?(f) } => "Network-Scanner"
+      executable = Dir["build/*"].find { |f| File.file?(f) && File.executable?(f) }
+      bin.install executable => "Network-Scanner" if executable
     end
   end
 
