@@ -2,7 +2,7 @@ class TiwutOsStudio < Formula
   desc "OS-Studio: Integrated Development Environment for OS Development"
   homepage "https://github.com/tiwut/OS-Studio"
   url "https://github.com/tiwut/OS-Studio/archive/refs/tags/version1.0.tar.gz"
-  sha256 "c6fa75c841cbffac851678a472f2a5bd612fff8308ef39236190e1f8dbb0e567" 
+  sha256 "3eeea6c6d2af4b41035ffcefdbec5e6c7e36126e04fce1db6fe432b13e8f837f" 
   license "GPL-3.0"
 
   depends_on "cmake" => :build
