@@ -1,4 +1,4 @@
-class NetworkScanner < Formula
+class TiwutNetworkScanner < Formula
   desc "Advanced Tactical Network Scanner"
   homepage "https://github.com/tiwut/Network-Scanner"
   url "https://codeload.github.com/tiwut/Network-Scanner/tar.gz/refs/tags/v2.4.6"
