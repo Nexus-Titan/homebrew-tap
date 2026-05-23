@@ -12,7 +12,7 @@ class TiwutTerminal < Formula
     depends_on "qt"
   elsif OS.linux?
     url "https://github.com/tiwut/Tiwut-Terminal/releases/download/v2.3.3/Tiwut_Terminal-x86_64.AppImage"
-    sha256 "d8016ed97253e660d7f64228be47b239e94a6978f631eb30d48ad14a2133cd9f"
+    sha256 "2bc6ffc67446bdae1a61e6223045f0ca4a8e98bafd28ef9b10fbc71f2e48388b"
   end
 
   def install
