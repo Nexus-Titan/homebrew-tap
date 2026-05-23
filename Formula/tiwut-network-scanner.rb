@@ -6,17 +6,14 @@ class TiwutNetworkScanner < Formula
   license "MIT"
   version "2.4.6"
 
+  env :std
+
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "qt"
-  depends_on "icu4c"
-  depends_on "pcre2"
-  depends_on "double-conversion"
-  depends_on "zstd"
 
   on_linux do
     depends_on "gcc"
-    depends_on "glib"
   end
 
   def install
