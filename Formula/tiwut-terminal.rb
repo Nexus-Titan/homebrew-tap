@@ -1,10 +1,10 @@
 class TiwutTerminal < Formula
   desc "Ultra-fast, cross-platform command-line emulator built in C++ and Qt 6"
   homepage "https://github.com/tiwut/Tiwut-Terminal"
-  url "https://codeload.github.com/tiwut/Tiwut-Terminal/tar.gz/refs/tags/v2.3.2"
+  url "https://codeload.github.com/tiwut/Tiwut-Terminal/tar.gz/refs/tags/v2.3.3"
   sha256 "d8c7227b6b18916e4272a8523ed7166ff63caf75e1a179a4373991679f3eee44"
   license "MIT"
-  version "4.2.4" 
+  version "2.3.3" 
   
   depends_on "cmake" => :build
   depends_on "qt"
