@@ -12,7 +12,7 @@ class TiwutLauncher < Formula
     depends_on "qt"
     depends_on "nexus-titan" 
   elsif OS.linux?
-    url "https://github.com/tiwut/Tiwut-Launcher/releases/download/V4.2.4/Tiwut-Launcher-linux-x86_64.AppImage"
+    url "https://github.com/tiwut/Network-Scanner/releases/download/v2.4.6/Network_Scanner-x86_64.AppImage"
     sha256 "6555eb38d420a69bea4727f21a1bff7e376049cf9d224be6a83df8827c45673f"
   end
 
