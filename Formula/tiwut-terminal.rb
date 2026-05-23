@@ -2,7 +2,7 @@ class TiwutTerminal < Formula
   desc "Ultra-fast, cross-platform command-line emulator built in C++ and Qt 6"
   homepage "https://github.com/tiwut/Tiwut-Terminal"
   url "https://codeload.github.com/tiwut/Tiwut-Terminal/tar.gz/refs/tags/v2.3.3"
-  sha256 "d8c7227b6b18916e4272a8523ed7166ff63caf75e1a179a4373991679f3eee44"
+  sha256 "d8016ed97253e660d7f64228be47b239e94a6978f631eb30d48ad14a2133cd9f"
   license "MIT"
   version "2.3.3" 
   
