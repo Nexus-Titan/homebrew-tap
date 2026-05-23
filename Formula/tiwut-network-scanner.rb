@@ -16,20 +16,13 @@ class TiwutNetworkScanner < Formula
 
   def install
     args = std_cmake_args + %W[
-      -DCMAKE_PREFIX_PATH=#{Formula["qt"].opt_prefix}
+      -DQt6_DIR=#{Formula["qt"].opt_lib}/cmake/Qt6
     ]
     
     system "cmake", "-S", ".", "-B", "build", *args
     system "cmake", "--build", "build"
     
-    if File.exist?("build/Network-Scanner")
-      bin.install "build/Network-Scanner"
-    elsif File.exist?("build/OmniScan")
-      bin.install "build/OmniScan" => "Network-Scanner"
-    else
-      executable = Dir["build/*"].find { |f| File.file?(f) && File.executable?(f) }
-      bin.install executable => "Network-Scanner" if executable
-    end
+    bin.install "build/Network-Scanner"
   end
 
   test do
