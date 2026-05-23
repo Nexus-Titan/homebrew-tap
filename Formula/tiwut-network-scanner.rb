@@ -12,7 +12,7 @@ class TiwutNetworkScanner < Formula
     depends_on "qt"
   elsif OS.linux?
     url "https://github.com/tiwut/Network-Scanner/releases/download/v2.4.6/Network_Scanner-x86_64.AppImage"
-    sha256 "756292e4cee517289ee946dfed9afff8bf2031d41735e5d9b71292f6dded58c9"
+    sha256 "ad6a549f12807d003cea078820aa702f30b808236191647701489dfcad5a674d"
   end
 
   def install
