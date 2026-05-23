@@ -9,17 +9,18 @@ class TiwutNetworkScanner < Formula
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "qt"
+  depends_on "icu4c"
+  depends_on "pcre2"
+  depends_on "double-conversion"
+  depends_on "zstd"
 
   on_linux do
     depends_on "gcc"
+    depends_on "glib"
   end
 
   def install
-    args = std_cmake_args + %W[
-      -DQt6_DIR=#{Formula["qt"].opt_lib}/cmake/Qt6
-    ]
-    
-    system "cmake", "-S", ".", "-B", "build", *args
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     
     bin.install "build/Network-Scanner"
