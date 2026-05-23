@@ -2,7 +2,7 @@ class NetworkScanner < Formula
   desc "Advanced Tactical Network Scanner"
   homepage "https://github.com/tiwut/Network-Scanner"
   url "https://codeload.github.com/tiwut/Network-Scanner/tar.gz/refs/tags/v2.4.6"
-  sha256 "2b56b1bff0f32d573d42054268e1b74710b46eef877321d236f264bdfe115ee6"
+  sha256 "756292e4cee517289ee946dfed9afff8bf2031d41735e5d9b71292f6dded58c9"
   license "MIT"
   version "2.4.6"
 
