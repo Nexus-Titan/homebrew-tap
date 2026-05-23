@@ -1,5 +1,5 @@
 class TiwutNetworkScanner < Formula
-  desc "Advanced Tactical Network Scanner"
+  desc "Advanced Network Scanner"
   homepage "https://github.com/tiwut/Network-Scanner"
   url "https://codeload.github.com/tiwut/Network-Scanner/tar.gz/refs/tags/v2.4.6"
   sha256 "756292e4cee517289ee946dfed9afff8bf2031d41735e5d9b71292f6dded58c9"
@@ -15,8 +15,8 @@ class TiwutNetworkScanner < Formula
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     
-    if File.exist?("build/OmniScan")
-      bin.install "build/OmniScan" => "Network-Scanner"
+    if File.exist?("build/Network-Scanner")
+      bin.install "build/Network-Scanner" => "Network-Scanner"
     elsif File.exist?("build/Network-Scanner")
       bin.install "build/Network-Scanner"
     else
