@@ -11,8 +11,8 @@ class TiwutBrewFormulaGenerator < Formula
     depends_on "cmake" => :build
     depends_on "qt"
   elsif OS.linux?
-    url "https://github.com/tiwut/Network-Scanner/releases/download/v2.4.6/Network_Scanner-x86_64.AppImage"
-    sha256 "ad6a549f12807d003cea078820aa702f30b808236191647701489dfcad5a674d"
+    url "https://github.com/tiwut/Brew-Formula-Generator/releases/download/v1.1.1/BrewFormulaGenerator.AppImage"
+    sha256 "92448faa6543054ae4fc735c918290096c799c27b0e4c0fb73e562c5ec6a3e3b"
   end
 
   def install
