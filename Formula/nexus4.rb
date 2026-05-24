@@ -1,4 +1,4 @@
-class NexusTitan < Formula
+class Nexus4 < Formula
   desc "C++ based interpreter for the Nexus language"
   homepage "https://tiwut.org/nexus"
   url "https://github.com/Nexus-Titan/Nexus-the-programming-language/archive/refs/tags/V4.1.1.tar.gz"
