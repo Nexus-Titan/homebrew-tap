@@ -1,13 +1,12 @@
 class NexusTitan < Formula
   desc "C++ based interpreter for the Nexus language"
-  homepage "https://tiwut.org"
+  homepage "https://tiwut.org/nexus"
   url "https://github.com/Nexus-Titan/Nexus-the-programming-language/archive/refs/tags/V4.1.1.tar.gz"
   sha256 "f8be7ddcc12865fdfea4bc88e42b000b7ae2ed9cf69523be92741932a8b319be"
   license "MIT"
-  version "4.1.1"
   
   def install
-    system "g++", "-o", "nexus", "interpreter.cpp"
+    system ENV.cxx, "-o", "nexus", "interpreter.cpp"
     
     bin.install "nexus"
   end
