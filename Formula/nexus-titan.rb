@@ -7,10 +7,10 @@ class NexusTitan < Formula
 
   def install
     system ENV.cxx, "-o", "nexus", "interpreter.cpp"
-    bin.install "nexus"
+    bin.install "nexus" => "nexus-titan"
   end
 
   test do
-    assert_path_exists bin/"nexus"
+    assert_path_exists bin/"nexus-titan"
   end
 end
