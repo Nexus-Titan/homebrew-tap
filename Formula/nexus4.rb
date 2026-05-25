@@ -42,25 +42,41 @@ class Nexus4 < Formula
 
     unless x11_include
       odie <<~EOS
-        X11 development headers not found (missing X11/Xlib.h).
-        Install the X11 dev package from your system package manager first:
-
-          Debian / Ubuntu:  sudo apt install libx11-dev
-          Fedora / RHEL:    sudo dnf install libX11-devel
-          Arch / Manjaro:   sudo pacman -S libx11
-          macOS:            install XQuartz from https://www.xquartz.org
+        -
+    ##########################################################################
+    ##########################################################################
+    ##                                                                      ##
+    ##  X11 development headers not found (missing X11/Xlib.h).             ##
+    ##  Install the X11 dev package from your system package manager first: ##
+    ##----------------------------------------------------------------------##
+    ##    Debian / Ubuntu:  sudo apt install libx11-dev                     ##
+    ##    Fedora / RHEL:    sudo dnf install libX11-devel                   ##
+    ##    Arch / Manjaro:   sudo pacman -S libx11                           ##
+    ##    macOS:            install XQuartz from https://www.xquartz.org    ##
+    ##                                                                      ##
+    ##########################################################################
+    ##########################################################################
+        -
       EOS
     end
 
     unless x11_lib
       odie <<~EOS
-        libX11 shared library not found.
-        Install the X11 dev package from your system package manager first:
-
-          Debian / Ubuntu:  sudo apt install libx11-dev
-          Fedora / RHEL:    sudo dnf install libX11-devel
-          Arch / Manjaro:   sudo pacman -S libx11
-          macOS:            install XQuartz from https://www.xquartz.org
+        -
+    ##########################################################################
+    ##########################################################################
+    ##                                                                      ##
+    ##  libX11 shared library not found.                                    ##
+    ##  Install the X11 dev package fromyour system package manager first:  ##
+    ##----------------------------------------------------------------------##
+    ##    Debian / Ubuntu:  sudo apt install libx11-dev                     ##
+    ##    Fedora / RHEL:    sudo dnf install libX11-devel                   ##
+    ##    Arch / Manjaro:   sudo pacman -S libx11                           ##
+    ##    macOS:            install XQuartz from https://www.xquartz.org    ##
+    ##                                                                      ##
+    ##########################################################################
+    ##########################################################################
+        -
       EOS
     end
 
