@@ -13,16 +13,16 @@ class Nexus4 < Formula
   depends_on "openssl@3"
 
   def install
-    cxx_flags = "-I#{Formula["xorgproto"].opt_include}"
-
+    inreplace "CMakeLists.txt", 
+              "${X11_INCLUDE_DIR}", 
+              "${X11_INCLUDE_DIR} #{Formula["libx11"].opt_include} #{Formula["xorgproto"].opt_include}"
     args = std_cmake_args + %W[
-      -DX11_X11_INCLUDE_PATH=#{Formula["libx11"].opt_include}
+      -DX11_X11_INCLUDE_PATH=#{Formula["xorgproto"].opt_include}
       -DX11_X11_LIB=#{Formula["libx11"].opt_lib}/#{shared_library("libX11")}
-      -DCMAKE_CXX_FLAGS=#{cxx_flags}
     ]
 
     system "cmake", "-S", ".", "-B", "build", *args
-    system "cmake", "--build", "build", "--verbose"
+    system "cmake", "--build", "build"
     
     bin.install "nexus" => "nexus4"
   end
