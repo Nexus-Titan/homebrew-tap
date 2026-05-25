@@ -2,7 +2,7 @@ class TiwutMacAppCreator < Formula
   desc "Automated tool to create macOS .app bundles from CMake C++ projects"
   homepage "https://github.com/tiwut/macOS-App-Creator"
   url "https://github.com/tiwut/macOS-App-Creator/archive/refs/tags/v1.1.1.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "95cdb726e0ae2eb4e4d7a8f35ba2030fb690ae42d9a46d391792ad858d602a32"
   license "MIT"
 
   if OS.linux?
