@@ -6,22 +6,17 @@ class Nexus4 < Formula
   license "MIT"
   
   depends_on "cmake" => :build
-  depends_on "pkg-config" => :build
-
   depends_on "libx11"
   depends_on "xorgproto"
   depends_on "openssl@3"
 
   def install
-    inreplace "CMakeLists.txt", 
-              "${X11_INCLUDE_DIR}", 
-              "${X11_INCLUDE_DIR} #{Formula["libx11"].opt_include} #{Formula["xorgproto"].opt_include}"
-    args = std_cmake_args + %W[
-      -DX11_X11_INCLUDE_PATH=#{Formula["xorgproto"].opt_include}
-      -DX11_X11_LIB=#{Formula["libx11"].opt_lib}/#{shared_library("libX11")}
-    ]
-
-    system "cmake", "-S", ".", "-B", "build", *args
+    inreplace "CMakeLists.txt" do |s|
+      s.gsub! "find_package(X11 REQUIRED)", "# find_package(X11 REQUIRED) bypassed"
+      s.gsub! "${X11_INCLUDE_DIR}", "#{Formula["libx11"].opt_include} #{Formula["xorgproto"].opt_include}"
+      s.gsub! "${X11_LIBRARIES}", "#{Formula["libx11"].opt_lib}/#{shared_library("libX11")}"
+    end
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
     
     bin.install "nexus" => "nexus4"
