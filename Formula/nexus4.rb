@@ -1,8 +1,8 @@
 class Nexus4 < Formula
   desc "C++ based interpreter for the Nexus language"
   homepage "https://tiwut.org/nexus"
-  url "https://github.com/Nexus-Titan/Nexus-the-programming-language/archive/refs/tags/v4.5.1.tar.gz"
-  sha256 "70fcbe3189f59f05e53d26b3be391e19210ac03d8bf78eb3c41261379fa73804"
+  url "https://github.com/Nexus-Titan/Nexus-the-programming-language/archive/refs/tags/v4.5.0.tar.gz"
+  sha256 "94c8456e808f4ac657cc384bb812f07ce4adc1d1703199eda1b8f502ca7ebc80"
   license "MIT"
   
   depends_on "cmake" => :build
