@@ -7,12 +7,6 @@ class Nexus4 < Formula
   
   depends_on "cmake" => :build
   depends_on "openssl@3"
-  on_linux do
-    depends_on "libx11"
-  end
-
-  on_macos do
-  end
   def install
     openssl = Formula["openssl@3"]
 
@@ -22,16 +16,62 @@ class Nexus4 < Formula
       "-DOPENSSL_INCLUDE_DIR=#{openssl.opt_include}",
       "-DOPENSSL_LIBRARIES=#{openssl.opt_lib}",
     ]
-    
-    if OS.mac?
-      xquartz = "/opt/X11"
-      if File.directory?(xquartz)
-        cmake_args += [
-          "-DX11_INCLUDE_DIR=#{xquartz}/include",
-          "-DX11_LIBRARIES=#{xquartz}/lib/libX11.dylib",
-        ]
-      end
+
+
+    x11_include_candidates = [
+      "/usr/include",
+      "/usr/local/include",
+      "/opt/X11/include",
+    ]
+
+    x11_lib_candidates = [
+      "/usr/lib/x86_64-linux-gnu",
+      "/usr/lib/aarch64-linux-gnu",
+      "/usr/lib64",
+      "/usr/lib",
+      "/usr/local/lib",
+      "/opt/X11/lib",
+    ]
+
+    x11_include = x11_include_candidates.find { |d| File.exist?("#{d}/X11/Xlib.h") }
+    x11_lib     = x11_lib_candidates.find do |d|
+      File.exist?("#{d}/libX11.so") ||
+        File.exist?("#{d}/libX11.so.6") ||
+        File.exist?("#{d}/libX11.dylib")
     end
+
+    unless x11_include
+      odie <<~EOS
+        X11 development headers not found (missing X11/Xlib.h).
+        Install the X11 dev package from your system package manager first:
+
+          Debian / Ubuntu:  sudo apt install libx11-dev
+          Fedora / RHEL:    sudo dnf install libX11-devel
+          Arch / Manjaro:   sudo pacman -S libx11
+          macOS:            install XQuartz from https://www.xquartz.org
+      EOS
+    end
+
+    unless x11_lib
+      odie <<~EOS
+        libX11 shared library not found.
+        Install the X11 dev package from your system package manager first:
+
+          Debian / Ubuntu:  sudo apt install libx11-dev
+          Fedora / RHEL:    sudo dnf install libX11-devel
+          Arch / Manjaro:   sudo pacman -S libx11
+          macOS:            install XQuartz from https://www.xquartz.org
+      EOS
+    end
+
+    x11_lib_file = ["libX11.so", "libX11.so.6", "libX11.dylib"]
+                   .map { |f| "#{x11_lib}/#{f}" }
+                   .find { |f| File.exist?(f) }
+
+    cmake_args += [
+      "-DX11_X11_INCLUDE_PATH=#{x11_include}",
+      "-DX11_X11_LIB=#{x11_lib_file}",
+    ]
 
     system "cmake", "-S", ".", "-B", "build", *cmake_args
     system "cmake", "--build", "build", "--config", "Release"
@@ -43,6 +83,7 @@ class Nexus4 < Formula
   end
 
   test do
+    # Write a minimal Nexus script and verify the interpreter handles it
     (testpath/"hello.nx").write <<~NX
       print("Hello from Nexus!")
     NX
