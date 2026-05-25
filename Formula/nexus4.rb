@@ -7,20 +7,22 @@ class Nexus4 < Formula
   
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
+
   depends_on "libx11"
   depends_on "xorgproto"
   depends_on "openssl@3"
 
   def install
-    ENV.append "CXXFLAGS", "-I#{Formula["xorgproto"].opt_include}"
-    ENV.append "CXXFLAGS", "-I#{Formula["libx11"].opt_include}"
+    cxx_flags = "-I#{Formula["xorgproto"].opt_include}"
+
     args = std_cmake_args + %W[
       -DX11_X11_INCLUDE_PATH=#{Formula["libx11"].opt_include}
       -DX11_X11_LIB=#{Formula["libx11"].opt_lib}/#{shared_library("libX11")}
+      -DCMAKE_CXX_FLAGS=#{cxx_flags}
     ]
 
     system "cmake", "-S", ".", "-B", "build", *args
-    system "cmake", "--build", "build"
+    system "cmake", "--build", "build", "--verbose"
     
     bin.install "nexus" => "nexus4"
   end
