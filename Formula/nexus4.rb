@@ -108,19 +108,41 @@ class Nexus4 < Formula
 
   def caveats
     msg = <<~EOS
-      Nexus #{version} has been installed as `nexus4`.
-
-      Run a script:
-        nexus4 script.nx
-
+-
+ ____________________________________________________________
+|                           Tiwut              {#} {-} {x}   |
+|------------------------------------------------------------|
+|                                                            |
+|      #     #  #####   #     #  #     #   ###      ##       |
+|      # #   #  #___      # #    #     #  #__     #  #       |
+|      #   # #  #         # #    #     #     #   #######     |
+|      #     #  #####   #     #   #####   ###        #       |
+|                                                            |
+|                 Pure Code. Total Freedom.                  |
+|           ______________________________________           |
+|           |                                    |           |
+|           | Website : https://tiwut.org/nexus  |           |
+|           | GitHub  : https://github.com/tiwut |           |
+|           |____________________________________|           |
+|                                                            |
+| ''Every line of code is a step towards digital autonomy.'' |
+|------------------------------------------------------------|
+|    x Nexus #{version} has been installed as `nexus4`.      |
+|    x Run a script: nexus4 script.nx                        |
+|____________________________________________________________|
+  -
     EOS
 
     if OS.mac?
       msg += <<~EOS
-        ⚠  macOS note: The GUI and networking features rely on X11 (XLib).
-           Please install XQuartz if you need GUI windows:
-             https://www.xquartz.org
-           After installing, log out and back in so DISPLAY is set.
+          -
+     #########################################################################
+     ## ⚠  macOS note: The GUI and networking features rely on X11 (XLib).  ##
+     ##    Please install XQuartz if you need GUI windows:                  ##
+     ##      https://www.xquartz.org                                        ##
+     ##    After installing, log out and back in so DISPLAY is set.         ##
+     #########################################################################
+           -
       EOS
     end
 
