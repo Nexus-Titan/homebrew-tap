@@ -42,7 +42,7 @@ class Nexus4 < Formula
 
     unless x11_include
       odie <<~EOS
-        -
+    -
     ##########################################################################
     ##########################################################################
     ##                                                                      ##
@@ -56,13 +56,13 @@ class Nexus4 < Formula
     ##                                                                      ##
     ##########################################################################
     ##########################################################################
-        -
+    -
       EOS
     end
 
     unless x11_lib
       odie <<~EOS
-        -
+    -
     ##########################################################################
     ##########################################################################
     ##                                                                      ##
@@ -76,7 +76,7 @@ class Nexus4 < Formula
     ##                                                                      ##
     ##########################################################################
     ##########################################################################
-        -
+    -
       EOS
     end
 
@@ -99,7 +99,6 @@ class Nexus4 < Formula
   end
 
   test do
-    # Write a minimal Nexus script and verify the interpreter handles it
     (testpath/"hello.nx").write <<~NX
       print("Hello from Nexus!")
     NX
@@ -130,19 +129,19 @@ class Nexus4 < Formula
 |    x Nexus #{version} has been installed as `nexus4`.      |
 |    x Run a script: nexus4 script.nx                        |
 |____________________________________________________________|
-  -
+-
     EOS
 
     if OS.mac?
       msg += <<~EOS
-          -
+     -
      #########################################################################
      ## ⚠  macOS note: The GUI and networking features rely on X11 (XLib).  ##
      ##    Please install XQuartz if you need GUI windows:                  ##
      ##      https://www.xquartz.org                                        ##
      ##    After installing, log out and back in so DISPLAY is set.         ##
      #########################################################################
-           -
+     -
       EOS
     end
 
