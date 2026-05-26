@@ -148,7 +148,8 @@ Desktop Panels and Navigation
 Navigation & Actions
 --------------------
 * Arrow Keys: Highlight files, directories, apps, or items inside active widgets.
-* Page Up / Page Down: Scroll through extensive lists in the GitHub repositories menu, remote directory explorer, README viewer, and file modals.
+* Page Up / Page Down: Scroll through extensive lists in the GitHub repositories menu, remote directory explorer, 
+  README viewer, and file modals.
 * ENTER: Execute shortcut links, switch directories, open files, or trigger App Store installations.
 * BACKSPACE: Ascend to parent directories in both local and remote file browsers.
 
@@ -223,7 +224,7 @@ ______________________________________________________________________________
 |                                                                            |
 | The Tiwut-CLI application assets and default desktop shortcuts have been   |
 | installed to Homebrew's share directory:                                   |
-|        #{opt_share}/tiwut-cli/desktop                                      |
+|        #{opt_share}/tiwut-cli/desktop                                      
 | The application binary will automatically query this directory on startup. |
 |____________________________________________________________________________|
 
