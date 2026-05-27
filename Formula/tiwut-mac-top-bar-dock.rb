@@ -1,4 +1,4 @@
-class MacTopBarDock < Formula
+class TiwutMacTopBarDock < Formula
   desc "Lightning-fast native macOS menu bar app launcher"
   homepage "https://github.com/tiwut/Mac-Top-Bar-Dock"
   url "https://github.com/tiwut/Mac-Top-Bar-Dock/archive/refs/tags/v1.1.1.tar.gz"
@@ -9,19 +9,15 @@ class MacTopBarDock < Formula
   depends_on :xcode => ["10.13", :build]
 
   def install
-    # Compile the binary from source
     system "clang++", "-std=c++17", "-Wall", "-fobjc-arc",
            "-framework", "Cocoa", "-framework", "QuartzCore",
            "TopBarDock.mm", "-o", "TopBarDock"
 
-    # Set up the App Bundle structure
     app_bundle = "Top Bar Dock.app"
     mkdir_p "#{app_bundle}/Contents/MacOS"
     
-    # Move compiled binary into the App Bundle
     mv "TopBarDock", "#{app_bundle}/Contents/MacOS/TopBarDock"
 
-    # Install the App Bundle
     app "#{app_bundle}"
   end
 
