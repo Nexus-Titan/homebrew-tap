@@ -1,12 +1,10 @@
-class TiwutMacTopBarDock < Formula
+class MacTopBarDock < Formula
   desc "Lightning-fast native macOS menu bar app launcher"
   homepage "https://github.com/tiwut/Mac-Top-Bar-Dock"
   url "https://github.com/tiwut/Mac-Top-Bar-Dock/archive/refs/tags/v1.1.1.tar.gz"
   sha256 "cd6786e1de252f9f08b56262b44dd1735d469d2a1aebce5c097212b892bb85d7"
   license "MIT"
   head "https://github.com/tiwut/Mac-Top-Bar-Dock.git", branch: "main"
-
-  depends_on :xcode => ["10.13", :build]
 
   def install
     system "clang++", "-std=c++17", "-Wall", "-fobjc-arc",
