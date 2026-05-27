@@ -1,4 +1,4 @@
-class MacTopBarDock < Formula
+class TiwutMacTopBarDock < Formula
   desc "Lightning-fast native macOS menu bar app launcher"
   homepage "https://github.com/tiwut/Mac-Top-Bar-Dock"
   url "https://github.com/tiwut/Mac-Top-Bar-Dock/archive/refs/tags/v1.1.1.tar.gz"
