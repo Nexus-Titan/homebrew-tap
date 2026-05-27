@@ -16,13 +16,23 @@ class TiwutMacTopBarDock < Formula
     
     mv "TopBarDock", "#{app_bundle}/Contents/MacOS/TopBarDock"
 
-    app "#{app_bundle}"
+    prefix.install app_bundle
+
+    (bin/"tiwut-mac-top-bar-dock").write <<~SH
+      #!/bin/sh
+      exec "#{opt_prefix}/Top Bar Dock.app/Contents/MacOS/TopBarDock" "$@"
+    SH
   end
 
   def caveats
     <<~EOS
-      The app has been successfully installed and symlinked into your Applications folder.
-      You can open it from your Applications folder or launch it via Spotlight.
+      The app has been successfully installed!
+
+      You can run the app directly from your terminal using:
+        tiwut-mac-top-bar-dock
+
+      Or you can symlink the app to your /Applications folder to launch it visually:
+        ln -sf "#{opt_prefix}/Top Bar Dock.app" /Applications/
 
       The first time you run it, the app will create a folder at:
         ~/DockDesktop
@@ -32,5 +42,6 @@ class TiwutMacTopBarDock < Formula
 
   test do
     assert_predicate prefix/"Top Bar Dock.app/Contents/MacOS/TopBarDock", :exist?
+    assert_predicate bin/"tiwut-mac-top-bar-dock", :exist?
   end
 end
